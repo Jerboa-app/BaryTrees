@@ -29,7 +29,10 @@ for i in 1:size(pin,1)
     insert!(Point((pin[i,:]...)),T)
 end
 
-scatter(pin[:,1],pin[:,2],label="",dpi=300)
+scatter(pin[:,1],pin[:,2],label="",dpi=300,
+    aspect_ratio=:equal,xaxis=nothing,yaxis=nothing,axis=:off
+)
+
 Draw!(T)
 plot!()
 
