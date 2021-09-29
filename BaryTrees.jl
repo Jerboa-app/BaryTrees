@@ -2,9 +2,10 @@ module BaryTrees
 
     using Plots, LinearAlgebra
 
-    import Base.∈, Base.∉, Plots.Shape
+    import Base.∈, Base.∉, Plots.Shape, Base.insert!
 
-    export BaryTree, Point, insert!, ∈, ∉, Draw, Draw!, Query
+    export BaryTree, Point, insert!, ∈, ∉, Draw, Draw!, Query, BaryCentric,
+           Cartesian2BaryCentric, BaryCentric2Cartesian
 
     const Point = Tuple{Float64,Float64}
 
@@ -129,6 +130,7 @@ module BaryTrees
 
     BaryTree(a::AxisAlignedTriangle)::BaryTree = BaryTree(false,a,nothing,nothing,nothing,nothing,nothing)
     BaryTree(r::Bool,a::AxisAlignedTriangle)::BaryTree = BaryTree(r,a,nothing,nothing,nothing,nothing,nothing)
+    BaryTree(a::BaryCentric)::BaryTree = BaryTree(AxisAlignedTriangle(a))
 
     function subdivide!(q::BaryTree)::Nothing
         """
